@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light Theme (No Changes) */
+    --background: 42 15% 94%;
+    --foreground: 15 25% 25%;
+    --card: 42 20% 97%;
+    --primary: 0 45% 35%;
+    --primary-foreground: 42 20% 97%;
+    --secondary: 42 10% 90%;
+    --secondary-foreground: 15 25% 25%;
+    --muted: 42 8% 88%;
+    --muted-foreground: 15 15% 45%;
+    --accent: 15 30% 60%;
+    --accent-foreground: 42 20% 97%;
+    --destructive: 0 70% 50%;
+    --border: 42 12% 85%;
+    --input: 42 12% 90%;
+    --ring: 0 45% 35%;
+    --radius: 0.5rem;
+  }
+
+  /* NEW Dark Brown Theme */
+  .dark {
+    --background: 15 25% 8%;
+    --foreground: 42 15% 94%
+    --card: 20 12% 12%;
+    --primary: 0 55% 55%;
+    --primary-foreground: 42 15% 94%;
+    --secondary: 20 10% 15%;
+    --secondary-foreground: 20 5% 80%;
+    --muted: 20 10% 15%;
+    --muted-foreground: 20 5% 55%;
+    --accent: 15 25% 75%;
+    --accent-foreground: 20 12% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --border: 20 10% 15%;
+    --input: 20 10% 15%;
+    --ring: 15 25% 75%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
