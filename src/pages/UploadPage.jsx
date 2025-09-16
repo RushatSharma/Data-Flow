@@ -144,20 +144,22 @@ export default function UploadPage() {
                 <Textarea id="text-input" placeholder="Paste unstructured data, logs, emails, or any text here..." value={textInput} onChange={handleTextInputChange} className="min-h-[80px] flex-1 resize-y" />
               </Card>
             </div>
-            <div className="flex flex-col items-center gap-4">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isProcessing || !hasData} onClick={() => setProcessingMode('structure')}>
-                  {isProcessing && processingMode === 'structure' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Structuring...</> : <><Database className="w-6 h-6 mr-2" /> Structure Data</>}
-                </Button>
-                <Button type="submit" size="lg" className="w-full sm:w-auto ml-2" disabled={isProcessing || !hasData} onClick={() => setProcessingMode('insights')}>
-                  {isProcessing && processingMode === 'insights' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Analyzing...</> : <><Zap className="w-6 h-6 mr-2" /> Generate Insights</>}
-                </Button>
-              </div>
+           <div className="flex flex-wrap justify-center items-center gap-4">
+              <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isProcessing || !hasData} onClick={() => setProcessingMode('structure')}>
+                {isProcessing && processingMode === 'structure' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Structuring...</> : <><Database className="w-6 h-6 mr-2" /> Structure Data</>}
+              </Button>
+              <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isProcessing || !hasData} onClick={() => setProcessingMode('insights')}>
+                {isProcessing && processingMode === 'insights' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Analyzing...</> : <><Zap className="w-6 h-6 mr-2" /> Generate Insights</>}
+              </Button>
+              
+              {/* This wrapper forces the Clear button to a new line and centers it */}
               {hasData && (
-                <Button type="button" variant="destructive" size="sm" onClick={clearUpload}>
-                  <XCircle className="w-4 h-4 mr-2" />
-                  Clear Input
-                </Button>
+                <div className="w-full flex justify-center">
+                  <Button type="button" variant="destructive" size="sm" onClick={clearUpload}>
+                    <XCircle className="w-4 h-4 mr-2" />
+                    Clear Input
+                  </Button>
+                </div>
               )}
             </div>
           </form>
