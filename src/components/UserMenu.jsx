@@ -20,8 +20,10 @@ export function UserMenu() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuRef]);
 
-
   if (!user) return null;
+
+  // A small adjustment to get the user's name, falling back to the email
+  const userName = user.displayName || user.email;
 
   return (
     <div className="relative" ref={menuRef}>
@@ -29,31 +31,43 @@ export function UserMenu() {
         <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center">
           <User className="w-4 h-4 text-accent-foreground" />
         </div>
-        <span className="hidden md:inline">{user.username}</span>
+        <span className="hidden md:inline">{userName}</span>
       </Button>
 
-      {showMenu && (
-        <Card className="absolute right-0 top-full mt-2 w-48 p-2 z-20">
-          <div className="space-y-1">
-            <div className="px-3 py-2 text-sm">
-              <p className="font-medium">{user.username}</p>
-              <p className="text-muted-foreground text-xs">{user.email}</p>
-            </div>
-            <hr className="my-1" />
-            <Link to="/history" onClick={() => setShowMenu(false)}>
-              <Button variant="ghost" size="sm" className="w-full justify-start">
-                <History className="w-4 h-4 mr-2" />
-                Upload History
-              </Button>
-            </Link>
-            <hr className="my-1" />
-            <Button variant="ghost" size="sm" className="w-full justify-start text-destructive" onClick={() => { logout(); setShowMenu(false); }}>
-              <LogOut className="w-4 h-4 mr-2" />
-              Sign Out
-            </Button>
+      {/* MODIFIED DROPDOWN MENU */}
+      <Card
+        className={`
+          absolute right-0 top-full mt-2 w-56 z-20 shadow-lg
+          origin-top-right transition-all duration-150 ease-out
+          ${showMenu ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}
+        `}
+      >
+        <div className="p-2">
+          <div className="px-2 py-1.5 text-sm">
+            <p className="font-semibold truncate">{userName}</p>
+            <p className="text-muted-foreground text-xs truncate">{user.email}</p>
           </div>
-        </Card>
-      )}
+        </div>
+        <div className="border-t border-border p-1">
+          <Link to="/history" onClick={() => setShowMenu(false)}>
+            <Button variant="ghost" size="sm" className="w-full justify-start font-normal">
+              <History className="w-4 h-4 mr-2" />
+              Upload History
+            </Button>
+          </Link>
+        </div>
+        <div className="border-t border-border p-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="w-full justify-start font-normal text-destructive hover:text-destructive"
+            onClick={() => { logout(); setShowMenu(false); }}
+          >
+            <LogOut className="w-4 h-4 mr-2" />
+            Sign Out
+          </Button>
+        </div>
+      </Card>
     </div>
   );
 }

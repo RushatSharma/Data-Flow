@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/Button.jsx";
 import { Card } from "../components/ui/Card.jsx";
-import { FileText, Database, BarChart2, Upload, Menu, X, Play, Wand2, Download, Star, Mail } from "lucide-react";
+import { FileText, Database, BarChart2, Upload, Menu, X, Play, Wand2, Download, Star, Mail, History, LogOut } from "lucide-react";
 import { UserMenu } from "../components/UserMenu.jsx";
 import { useAuth } from "../hooks/useAuth.js";
 import { ThemeToggle } from "../components/ThemeToggle.jsx";
@@ -10,7 +10,7 @@ import { ThemeToggle } from "../components/ThemeToggle.jsx";
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showDemo, setShowDemo] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
   return (
     <div className="min-h-screen bg-background">
@@ -18,9 +18,9 @@ export default function HomePage() {
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
-  <span className="text-xl font-bold text-foreground">Data Flow</span>
-</Link>
+            <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+            <span className="text-xl font-bold text-foreground">Data Flow</span>
+          </Link>
 
           <div className="flex items-center space-x-2">
              <div className="hidden md:flex items-center space-x-2">
@@ -43,25 +43,65 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t bg-background">
-            <nav className="container mx-auto px-4 py-4 space-y-2">
-               {isAuthenticated ? (
-                 <UserMenu />
-               ) : (
-                <div className="flex flex-col space-y-2 pt-2 border-t">
-                  <Link to="/login"><Button variant="ghost" className="w-full justify-start">Sign In</Button></Link>
-                  <Link to="/signup"><Button className="w-full">Sign Up</Button></Link>
+        {/* --- MODIFIED SECTION FOR SMOOTH TRANSITION --- */}
+        <div
+          className={`
+            absolute w-full left-0 md:hidden border-t bg-background z-40
+            transition-all duration-300 ease-in-out
+            ${mobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}
+          `}
+        >
+          <nav className="container mx-auto px-4 py-4 space-y-2">
+              {isAuthenticated ? (
+                <div className="flex flex-col space-y-2">
+                  {/* User Info */}
+                  <div className="px-3 py-2 text-sm">
+                    <p className="font-medium text-foreground">
+                      {user.displayName || 'User'}
+                    </p>
+                    <p className="text-muted-foreground text-xs">{user.email}</p>
+                  </div>
+                  <hr />
+                  {/* Navigation Links */}
+                  <Link
+                    to="/history"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start"
+                    >
+                      <History className="w-4 h-4 mr-2" />
+                      Upload History
+                    </Button>
+                  </Link>
+                  <hr />
+                  {/* Sign Out Button */}
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-destructive"
+                    onClick={() => {
+                      logout();
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Sign Out
+                  </Button>
                 </div>
-              )}
-            </nav>
-          </div>
-        )}
+              ) : (
+              <div className="flex flex-col space-y-2">
+                <Link to="/login"><Button variant="ghost" className="w-full justify-start">Sign In</Button></Link>
+                <Link to="/signup"><Button className="w-full">Sign Up</Button></Link>
+              </div>
+            )}
+          </nav>
+        </div>
+        {/* --- END OF MODIFIED SECTION --- */}
       </header>
 
       <main>
-        {/* Hero Section - ICONS ADDED BACK */}
+        {/* Hero Section */}
         <section className="relative min-h-[calc(100vh-65px)] flex items-center py-20 px-4 text-center">
           {/* Background Icons */}
           <div className="absolute inset-0 pointer-events-none z-0 opacity-50">

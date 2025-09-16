@@ -25,40 +25,27 @@ export default function ResultsPage() {
     setIsLoading(false);
   }, [navigate]);
 
-  // ENHANCED function to create a professionally formatted CSV
   const downloadInsightsCSV = () => {
     if (!resultsData?.insights || resultsData.insights.length === 0) return;
 
-    // Helper function to safely format a cell for CSV
     const escapeCell = (cell) => {
       const cellStr = String(cell ?? '');
-      // If the cell contains a comma, double quote, or newline, wrap it in double quotes.
       if (cellStr.includes(',') || cellStr.includes('"') || cellStr.includes('\n')) {
-        // Escape existing double quotes by doubling them up
         return `"${cellStr.replace(/"/g, '""')}"`;
       }
       return cellStr;
     };
 
     let csvContent = "";
-
     resultsData.insights.forEach(insight => {
-      // Add the title, spanning across the first column
       csvContent += `"${insight.title}"\n`;
-      
-      // Add the table headers
       csvContent += insight.headers.map(escapeCell).join(",") + "\n";
-      
-      // Add the table rows
       csvContent += insight.rows.map(row => 
         row.map(escapeCell).join(",")
       ).join("\n");
-      
-      // Add two blank lines for clear separation
       csvContent += "\n\n";
     });
 
-    // Added BOM for better Excel compatibility with special characters
     const blob = new Blob([`\uFEFF${csvContent}`], { type: "text/csv;charset=utf-8;" }); 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -70,7 +57,6 @@ export default function ResultsPage() {
     URL.revokeObjectURL(url);
   };
   
-  // Also updating the structure download function for consistency
   const downloadStructureCSV = () => {
     if (!resultsData?.structure) return;
     const { headers, rows } = resultsData.structure;
@@ -116,7 +102,7 @@ export default function ResultsPage() {
       {insights.map((insight, index) => (
         <div key={index}>
           <h3 className="text-xl font-semibold mb-2">{insight.title}</h3>
-          <p className="text-muted-foreground text-sm mb-4">👉 {insight.summary}</p>
+          <p className="text-muted-foreground text-sm mb-4">- {insight.summary}</p>
           <Card className="p-0 overflow-hidden">
             <Table>
               <TableHeader><TableRow>{insight.headers.map((h, i) => <TableHead key={i}>{h}</TableHead>)}</TableRow></TableHeader>
@@ -130,19 +116,31 @@ export default function ResultsPage() {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* --- HEADER WITH RESPONSIVE FIXES --- */}
       <header className="border-b">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
-  <span className="text-xl font-bold">Data Flow</span>
-</Link>
+            <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+            <span className="text-lg sm:text-xl font-bold">Data Flow</span>
+          </Link>
           <div className="flex items-center space-x-2">
             {structure ? (
-              <Button onClick={downloadStructureCSV} size="sm"><Download className="w-4 h-4 mr-2" /> Export Structure</Button>
+              <Button onClick={downloadStructureCSV} size="sm">
+                <Download className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Export Structure</span>
+              </Button>
             ) : (
-              <Button onClick={downloadInsightsCSV} size="sm"><Download className="w-4 h-4 mr-2" /> Export Insights</Button>
+              <Button onClick={downloadInsightsCSV} size="sm">
+                <Download className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Export Insights</span>
+              </Button>
             )}
-            <Link to="/upload"><Button variant="ghost" size="sm"><ArrowLeft className="w-4 h-4 mr-2" /> Process More</Button></Link>
+            <Link to="/upload">
+              <Button variant="ghost" size="sm">
+                <ArrowLeft className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Process More</span>
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
