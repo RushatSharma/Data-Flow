@@ -5,7 +5,7 @@ import {
   signInWithEmailAndPassword, 
   signOut 
 } from "firebase/auth";
-import { auth } from "/src/lib/firebase.js"; // Import from our new firebase config
+import { auth } from "../lib/firebase.js"; // Import from our new firebase config
 
 export const AuthContext = createContext(undefined);
 

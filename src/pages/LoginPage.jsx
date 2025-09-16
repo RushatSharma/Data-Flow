@@ -8,7 +8,7 @@ import { Database, Loader2, Eye, EyeOff, Home } from "lucide-react";
 import { useAuth } from "../hooks/useAuth.js";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState(""); // Changed from username to email
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +26,6 @@ export default function LoginPage() {
       await login(email, password);
       navigate("/");
     } catch (err) {
-      // Firebase provides more specific error messages
       setError(err.message || "Login failed. Please check your credentials.");
     } finally {
       setIsLoading(false);
@@ -46,7 +45,7 @@ export default function LoginPage() {
             <Database className="w-7 h-7 text-accent-foreground" />
           </div>
           <h1 className="text-3xl font-bold">Welcome Back</h1>
-          <p className="text-base text-muted-foreground mt-2">Sign in to your account</p>
+          <p className="text-base text-muted-foreground mt-2">Sign in to your Data Flow account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

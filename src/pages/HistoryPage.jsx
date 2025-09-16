@@ -21,11 +21,9 @@ export default function HistoryPage() {
     }
 
     if (user) {
-      // Create a query to get history documents for the current user, ordered by date
       const historyCollectionRef = collection(db, "users", user.uid, "history");
       const q = query(historyCollectionRef, orderBy("processedAt", "desc"));
 
-      // onSnapshot listens for real-time updates from Firestore
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const historyData = [];
         querySnapshot.forEach((doc) => {
@@ -38,7 +36,6 @@ export default function HistoryPage() {
         setLoadingHistory(false);
       });
 
-      // Cleanup listener on unmount
       return () => unsubscribe();
     }
   }, [isAuthenticated, user, navigate]);
@@ -70,10 +67,10 @@ export default function HistoryPage() {
     <div className="min-h-screen bg-background">
       <header className="border-b">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center"><Database className="w-5 h-5 text-accent-foreground" /></div>
-            <span className="text-xl font-bold">Datrix</span>
-          </Link>
+         <Link to="/" className="flex items-center space-x-2">
+  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+  <span className="text-xl font-bold">Data Flow</span>
+</Link>
           <div className="flex items-center space-x-2">
             {history.length > 0 && <Button variant="outline" size="sm" onClick={handleClearAll}><Trash2 className="w-4 h-4 mr-2" /> Clear</Button>}
             <Link to="/"><Button variant="ghost" size="sm"><ArrowLeft className="w-4 h-4 mr-2" /> Back</Button></Link>

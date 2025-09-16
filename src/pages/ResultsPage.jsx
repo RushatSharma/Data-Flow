@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "/src/components/ui/Button.jsx";
-import { Card } from "/src/components/ui/Card.jsx";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "/src/components/ui/Table.jsx";
+import { Button } from "../components/ui/Button.jsx";
+import { Card } from "../components/ui/Card.jsx";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../components/ui/Table.jsx";
 import { Database, Download, ArrowLeft, FileText, Loader2 } from "lucide-react";
 
 export default function ResultsPage() {
@@ -12,7 +12,7 @@ export default function ResultsPage() {
 
   useEffect(() => {
     try {
-      const storedResults = sessionStorage.getItem("datrixResults");
+      const storedResults = sessionStorage.getItem("dataFlowResults");
       if (storedResults) {
         setResultsData(JSON.parse(storedResults));
       } else {
@@ -63,7 +63,7 @@ export default function ResultsPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "datrix-insights-report.csv";
+    link.download = "data-flow-insights-report.csv";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -91,7 +91,7 @@ export default function ResultsPage() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "datrix-structure.csv";
+    link.download = "data-flow-structure.csv";
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -116,7 +116,7 @@ export default function ResultsPage() {
       {insights.map((insight, index) => (
         <div key={index}>
           <h3 className="text-xl font-semibold mb-2">{insight.title}</h3>
-          <p className="text-muted-foreground text-sm mb-4"> - {insight.summary}</p>
+          <p className="text-muted-foreground text-sm mb-4">👉 {insight.summary}</p>
           <Card className="p-0 overflow-hidden">
             <Table>
               <TableHeader><TableRow>{insight.headers.map((h, i) => <TableHead key={i}>{h}</TableHead>)}</TableRow></TableHeader>
@@ -133,9 +133,9 @@ export default function ResultsPage() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center"><Database className="w-5 h-5 text-accent-foreground" /></div>
-            <span className="text-xl font-bold">Datrix</span>
-          </Link>
+  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+  <span className="text-xl font-bold">Data Flow</span>
+</Link>
           <div className="flex items-center space-x-2">
             {structure ? (
               <Button onClick={downloadStructureCSV} size="sm"><Download className="w-4 h-4 mr-2" /> Export Structure</Button>

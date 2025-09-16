@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "/src/components/ui/Button.jsx";
-import { Card } from "/src/components/ui/Card.jsx";
-import { Textarea } from "/src/components/ui/Textarea.jsx";
-import { Input } from "/src/components/ui/Input.jsx";
-import { Label } from "/src/components/ui/Label.jsx";
+import { Button } from "../components/ui/Button.jsx";
+import { Card } from "../components/ui/Card.jsx";
+import { Textarea } from "../components/ui/Textarea.jsx";
+import { Input } from "../components/ui/Input.jsx";
+import { Label } from "../components/ui/Label.jsx";
 import { Upload, FileText, Database, ArrowLeft, Loader2, Zap, XCircle } from "lucide-react";
-import { getStructuredDataFromGemini, getInsightsFromGemini } from "/src/lib/geminiService.js";
-import { useAuth } from "/src/hooks/useAuth.js";
-import { db } from "/src/lib/firebase.js";
+import { getStructuredDataFromGemini, getInsightsFromGemini } from "../lib/geminiService.js";
+import { useAuth } from "../hooks/useAuth.js";
+import { db } from "../lib/firebase.js";
 import { collection, addDoc } from "firebase/firestore";
-import { useUpload } from "/src/contexts/UploadContext.jsx";
+import { useUpload } from "../contexts/UploadContext.jsx";
 
 export default function UploadPage() {
   const {
@@ -84,7 +84,7 @@ export default function UploadPage() {
       }
 
       await saveHistoryRecord(recordToSave);
-      sessionStorage.setItem("datrixResults", JSON.stringify(results));
+      sessionStorage.setItem("dataFlowResults", JSON.stringify(results));
       navigate("/results");
 
     } catch (error) {
@@ -103,9 +103,9 @@ export default function UploadPage() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center"><Database className="w-5 h-5 text-accent-foreground" /></div>
-            <span className="text-xl font-bold">Datrix</span>
-          </Link>
+  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+  <span className="text-xl font-bold">Data Flow</span>
+</Link>
           <div className="flex items-center space-x-2">
             <Link to="/"><Button variant="ghost" size="sm"><ArrowLeft className="w-4 h-4 mr-2" />Back</Button></Link>
           </div>
@@ -144,7 +144,7 @@ export default function UploadPage() {
                 <Textarea id="text-input" placeholder="Paste unstructured data, logs, emails, or any text here..." value={textInput} onChange={handleTextInputChange} className="min-h-[80px] flex-1 resize-y" />
               </Card>
             </div>
-           <div className="flex flex-wrap justify-center items-center gap-4">
+            <div className="flex flex-wrap justify-center items-center gap-4">
               <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={isProcessing || !hasData} onClick={() => setProcessingMode('structure')}>
                 {isProcessing && processingMode === 'structure' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Structuring...</> : <><Database className="w-6 h-6 mr-2" /> Structure Data</>}
               </Button>
@@ -152,7 +152,6 @@ export default function UploadPage() {
                 {isProcessing && processingMode === 'insights' ? <><Loader2 className="w-6 h-6 mr-2 animate-spin" /> Analyzing...</> : <><Zap className="w-6 h-6 mr-2" /> Generate Insights</>}
               </Button>
               
-              {/* This wrapper forces the Clear button to a new line and centers it */}
               {hasData && (
                 <div className="w-full flex justify-center">
                   <Button type="button" variant="destructive" size="sm" onClick={clearUpload}>

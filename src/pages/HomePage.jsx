@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Button } from "/src/components/ui/Button.jsx";
-import { Card } from "/src/components/ui/Card.jsx";
+import { Button } from "../components/ui/Button.jsx";
+import { Card } from "../components/ui/Card.jsx";
 import { FileText, Database, BarChart2, Upload, Menu, X, Play, Wand2, Download, Star, Mail } from "lucide-react";
-import { UserMenu } from "/src/components/UserMenu.jsx";
-import { useAuth } from "/src/hooks/useAuth.js";
-import { ThemeToggle } from "/src/components/ThemeToggle.jsx";
+import { UserMenu } from "../components/UserMenu.jsx";
+import { useAuth } from "../hooks/useAuth.js";
+import { ThemeToggle } from "../components/ThemeToggle.jsx";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,11 +18,9 @@ export default function HomePage() {
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center">
-              <Database className="w-5 h-5 text-accent-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground">Datrix</span>
-          </Link>
+  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+  <span className="text-xl font-bold text-foreground">Data Flow</span>
+</Link>
 
           <div className="flex items-center space-x-2">
              <div className="hidden md:flex items-center space-x-2">
@@ -82,17 +80,14 @@ export default function HomePage() {
               <span> Unlock Insights</span>
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let Datrix handle the chaos and surface the insights.
+              Let Data Flow handle the chaos and surface the insights.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
               <Link to="/upload">
                 <Button size="lg">
-                  <Upload className="w-5 h-5 mr-2" /> Try Datrix Now
+                  <Upload className="w-5 h-5 mr-2" /> Try Data Flow Now
                 </Button>
               </Link>
-              <Button variant="outline" size="lg" onClick={() => setShowDemo(true)}>
-                <Play className="w-5 h-5 mr-2" /> Watch Demo
-              </Button>
             </div>
           </div>
         </section>
@@ -101,7 +96,7 @@ export default function HomePage() {
         <section id="how-it-works" className="py-20 px-4">
           <div className="container mx-auto">
             <h2 className="text-4xl font-bold text-center mb-4">A Simple, Powerful Process</h2>
-            <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">In just three simple steps, Datrix turns your messy data into a clean, usable format.</p>
+            <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">In just three simple steps, Data Flow turns your messy data into a clean, usable format.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="p-8 text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                 <div className="flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 border mb-4 mx-auto">
@@ -135,7 +130,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Card className="p-8">
                 <div className="flex mb-2">{[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-yellow-500 fill-current" />)}</div>
-                <p className="mb-4 text-base text-muted-foreground italic">"Datrix saved me hours of manual data cleaning. I was able to process my survey results in minutes instead of days!"</p>
+                <p className="mb-4 text-base text-muted-foreground italic">"Data Flow saved me hours of manual data cleaning. I was able to process my survey results in minutes instead of days!"</p>
                 <p className="text-lg font-semibold">— Sarah J., Market Analyst</p>
               </Card>
               <Card className="p-8">
@@ -176,7 +171,7 @@ export default function HomePage() {
 
       <footer className="py-8 px-4 bg-muted/30 border-t">
         <div className="container mx-auto text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Datrix. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Data Flow. All rights reserved.</p>
         </div>
       </footer>
       
@@ -185,7 +180,7 @@ export default function HomePage() {
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setShowDemo(false)}>
           <Card className="w-full max-w-2xl p-4 sm:p-6" onClick={(e) => e.stopPropagation()}>
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Datrix Demo</h3>
+              <h3 className="text-lg font-semibold">Data Flow Demo</h3>
               <Button variant="ghost" size="icon" onClick={() => setShowDemo(false)}><X className="w-4 h-4" /></Button>
             </div>
             <div className="aspect-video bg-muted rounded-lg flex items-center justify-center">

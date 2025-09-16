@@ -55,7 +55,7 @@ export default function SignupPage() {
             <Database className="w-7 h-7 text-accent-foreground" />
           </div>
           <h1 className="text-3xl font-bold">Create an Account</h1>
-          <p className="text-base text-muted-foreground mt-2">Start transforming your data</p>
+          <p className="text-base text-muted-foreground mt-2">Start transforming your data with Data Flow</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
