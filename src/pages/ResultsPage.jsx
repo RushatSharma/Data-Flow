@@ -116,7 +116,7 @@ export default function ResultsPage() {
       {insights.map((insight, index) => (
         <div key={index}>
           <h3 className="text-xl font-semibold mb-2">{insight.title}</h3>
-          <p className="text-muted-foreground text-sm mb-4">👉 {insight.summary}</p>
+          <p className="text-muted-foreground text-sm mb-4">- {insight.summary}</p>
           <Card className="p-0 overflow-hidden">
             <Table>
               <TableHeader><TableRow>{insight.headers.map((h, i) => <TableHead key={i}>{h}</TableHead>)}</TableRow></TableHeader>
