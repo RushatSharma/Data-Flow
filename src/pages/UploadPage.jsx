@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button.jsx";
 import { Card } from "../components/ui/Card.jsx";
-import { Textarea } from "../components/ui/TextArea.jsx";
+import { Textarea } from "../components/ui/TextArea.jsx"; // CORRECTED PATH
 import { Input } from "../components/ui/Input.jsx";
 import { Label } from "../components/ui/Label.jsx";
 import { Upload, FileText, Database, ArrowLeft, Loader2, Zap, XCircle } from "lucide-react";
@@ -103,9 +103,9 @@ export default function UploadPage() {
       <header className="border-b">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-  <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
-  <span className="text-xl font-bold">Data Flow</span>
-</Link>
+            <img src="/data_15198758.png" alt="Data Flow Logo" className="w-8 h-8" />
+            <span className="text-xl font-bold">Data Flow</span>
+          </Link>
           <div className="flex items-center space-x-2">
             <Link to="/"><Button variant="ghost" size="sm"><ArrowLeft className="w-4 h-4 mr-2" />Back</Button></Link>
           </div>
