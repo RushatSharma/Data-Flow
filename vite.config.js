@@ -5,10 +5,9 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    // This is the proxy configuration for local development
     proxy: {
+      // Any request to a URL starting with "/api" will be sent to your local server
       '/api': {
-        // This is the target where your local Express server will run
         target: 'http://localhost:3001',
         changeOrigin: true,
       },
