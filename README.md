@@ -1,14 +1,14 @@
-# Data Flow 
+# Data Flow
 
 **Live Demo:** [https://data-flow-three-mu.vercel.app/](https://data-flow-tawny.vercel.app/)
 
 Data Flow is an intelligent web application designed to instantly structure your messy data and unlock valuable insights. Simply upload a file (`CSV`, `JSON`, `TXT`) or paste raw text, and let our AI-powered engine clean, organize, and analyze your information.
 
-This application is built with a modern tech stack including **React**, **Vite**, and **Tailwind CSS** for the frontend, with **Firebase** for user authentication and data storage. The core data processing is powered by the **Google Generative AI (Gemini)** API.
+This application is built with a modern tech stack including **React**, **Vite**, and **Tailwind CSS** for the frontend, with **Firebase** for user authentication and data storage. The core data processing is powered by the **Google Generative AI (Gemini)** API. More feature will be added in time.
 
 ---
 
-##  Features
+## Features
 
 - **File Upload & Text Input:** Supports uploading `.csv`, `.json`, and `.txt` files, or directly pasting text.
 - **AI-Powered Data Structuring:** Utilizes the Gemini API to automatically convert unstructured data into a clean, tabular format.
@@ -17,31 +17,32 @@ This application is built with a modern tech stack including **React**, **Vite**
 - **Upload History:** Logged-in users can view a history of their past data processing sessions, stored in Firestore.
 - **Data Export:** Download your structured data or insights as a `.csv` file.
 - **Theming:** Includes a dark/light mode toggle for user preference.
+- More feature will be added in time.
 
 ---
 
-##  Tech Stack
+## Tech Stack
 
-- **Frontend:** React, Vite.js  
-- **Styling:** Tailwind CSS, tailwindcss-animate  
-- **Routing:** React Router  
-- **Backend & Database:** Firebase (Authentication, Firestore)  
-- **AI:** Google Generative AI (Gemini)  
+- **Frontend:** React, Vite.js
+- **Styling:** Tailwind CSS, tailwindcss-animate
+- **Routing:** React Router
+- **Backend & Database:** Firebase (Authentication, Firestore)
+- **AI:** Google Generative AI (Gemini)
 
 ---
 
-##  Getting Started
+## Getting Started
 
 To get a local copy up and running, follow these simple steps.
 
-###  Prerequisites
+### Prerequisites
 
 - [Node.js](https://nodejs.org/) (version 14 or higher)
 - npm (or any other package manager like yarn or pnpm)
 
 ---
 
-###  Installation & Setup
+### Installation & Setup
 
 Clone the repository:
 

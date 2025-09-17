@@ -43,7 +43,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* --- MODIFIED SECTION FOR SMOOTH TRANSITION --- */}
+        {/* Mobile Menu */}
         <div
           className={`
             absolute w-full left-0 md:hidden border-t bg-background z-40
@@ -97,7 +97,6 @@ export default function HomePage() {
             )}
           </nav>
         </div>
-        {/* --- END OF MODIFIED SECTION --- */}
       </header>
 
       <main>
@@ -209,9 +208,14 @@ export default function HomePage() {
         </section>
       </main>
 
+      {/* --- MODIFIED FOOTER --- */}
       <footer className="py-8 px-4 bg-muted/30 border-t">
-        <div className="container mx-auto text-center text-sm text-muted-foreground">
+        <div className="container mx-auto text-center text-sm text-muted-foreground flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-4">
           <p>&copy; {new Date().getFullYear()} Data Flow. All rights reserved.</p>
+          <p className="hidden sm:block">|</p>
+          <p>
+            Made by <a href="https://github.com/RushatSharma" target="_blank" rel="noopener noreferrer" className="font-semibold text-foreground hover:underline">Rushat Sharma</a>
+          </p>
         </div>
       </footer>
       
