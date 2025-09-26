@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/Button.jsx";
 import { Card } from "../components/ui/Card.jsx";
-import { Textarea } from "../components/ui/TextArea.jsx"; // CORRECTED PATH
+import { Textarea } from "../components/ui/Textarea.jsx"; // CORRECTED PATH
 import { Input } from "../components/ui/Input.jsx";
 import { Label } from "../components/ui/Label.jsx";
 import { Upload, FileText, Database, ArrowLeft, Loader2, Zap, XCircle } from "lucide-react";
